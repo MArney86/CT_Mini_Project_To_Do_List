@@ -4,10 +4,10 @@ def add_task(todo_list):
 def view_tasks(todo_list):
     pass
 
-def mark_complete(todo_list, task):
+def mark_complete(todo_list):
     pass
 
-def delete_task(todo_list, task)
+def delete_task(todo_list)
     pass
 
 todo_list = []
@@ -18,14 +18,21 @@ while True:
     try:
         user_selection = int(input("Please input the number for the feature you'd like to use: "))
         if user_selection < 1 or user_selection > 5:
-            pass
-        pass
-    except ValueError:
-        pass
+            raise ValueError("Please choose a number from the menu list.")
+    except ValueError as ve:
+        if "invalid literal" in str(ve):
+            print("That's not a number. Please enter a number from the menu list.")
+        else:
+            print(ve)
     else:
-        pass
-    finally:
-        pass
-    
-
-      
+        if user_selection == 1:
+            add_task(todo_list)
+        elif user_selection == 2:
+            view_tasks(todo_list)
+        elif user_selection == 3:
+            mark_complete(todo_list)
+        elif user_selection == 4:
+            delete_task(todo_list)
+        elif user_selection = 5:
+            break
+        
