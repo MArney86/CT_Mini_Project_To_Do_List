@@ -7,12 +7,21 @@ def add_task(todo_list): #function to add a task to a todo list
         print(f"New task: '{new_task}' added to the To Do List") #print a message to the user that the task was added to the list
 
 def view_tasks(todo_list): #function to view all the tasks in the To Do List
-    pass
-
+    if not todo_list:
+        print("There are no tasks in your To Do list currently.")
+    else:
+        i = 1
+        for task in todo_list.keys():
+            if todo_list[task] == True:
+                print(f"{i}: " + task + ": complete")
+            else:
+                print(f"{i}: " + task + ": incomplete")
+        i += 1
+        
 def mark_complete(todo_list): #funtion to mark a task in the To Do List complete
     pass
 
-def delete_task(todo_list) #function to delete a task from the To Do List
+def delete_task(todo_list): #function to delete a task from the To Do List
     pass
 
 todo_list = {} #initialize an empty todo list
@@ -38,5 +47,5 @@ while True: #main program loop
             mark_complete(todo_list)
         elif user_selection == 4: #user select to delet a task
             delete_task(todo_list)
-        elif user_selection = 5: #user selects to quit
+        elif user_selection == 5: #user selects to quit
             break
