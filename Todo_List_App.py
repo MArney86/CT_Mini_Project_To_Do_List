@@ -17,10 +17,10 @@ def view_tasks(todo_list): #function to view all the tasks in the To Do List
     if not todo_list: #ensure that the To Do list is not empty
         print("There are no tasks in your To Do list currently.") #inform the user that the task list is empty
     else: #there is something in the task list
-        Print("The current tasks on your To Do List (Red is incomplete, Green is complete):") #print header to the user explaining the colors of the text
+        print("The current tasks on your To Do List (Red is incomplete, Green is complete):") #print header to the user explaining the colors of the text
         i = 1 #counter for printing out the list of tasks
         for task in todo_list.keys(): #iterate through the tasks
-            if todo_list[task] == True: #check if the flag for completion is true
+            if todo_list[task]: #check if the flag for completion is true
                 print(f"\033[32m{i}: " + task + ": complete\033[0m") #print the task as completed and in greeen then returns the console color to default
             else: #completion flag not set
                 print(f"\033[31m{i}: " + task + ": incomplete\033[0m") #print the task as incomplete and in red then returns the console color to default
