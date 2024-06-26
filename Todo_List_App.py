@@ -17,12 +17,13 @@ def view_tasks(todo_list): #function to view all the tasks in the To Do List
     if not todo_list: #ensure that the To Do list is not empty
         print("There are no tasks in your To Do list currently.") #inform the user that the task list is empty
     else: #there is something in the task list
+        Print("The current tasks on your To Do List (Red is incomplete, Green is complete):") #print header to the user explaining the colors of the text
         i = 1 #counter for printing out the list of tasks
         for task in todo_list.keys(): #iterate through the tasks
-            if todo_list[task] == True: #check if the flag for completion is true
-                print(f"\033[32m{i}: " + task + ": complete\033[0m") #print the task as completed
+            if todo_list[task][0] == True: #check if the flag for completion is true
+                print(f"\033[32m{i}: " + task + ": complete\033[0m") #print the task as completed and in greeen then returns the console color to default
             else: #completion flag not set
-                print(f"\033[31m{i}: " + task + ": incomplete\033[0m") #print the task as incomplete
+                print(f"\033[31m{i}: " + task + ": incomplete\033[0m") #print the task as incomplete and in red then returns the console color to default
             i += 1
 
 def mark_complete(todo_list): #funtion to mark a task in the To Do List complete
@@ -62,7 +63,7 @@ def delete_task(todo_list): #function to delete a task from the To Do List
                 print(ve) #print message passed by the raise call
 
 todo_list = {} #initialize an empty todo list
-print("Welcome to the To-Do List App!") #a welcome to the program for users
+print("Welcome to the To-Do List App!\n\n") #a welcome to the program for users
 
 while True: #main program loop
     print("Menu:\n1. Add a task\n2. View tasks\n3. Mark a task as complete\n4. Delete a task\n5. Quit") #print the main feature menu to the user
