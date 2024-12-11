@@ -2,11 +2,11 @@
 
 def add_task(todo_list): #function to add a task to a todo list
     new_task = input("What is the task you'd like to add to the Todo List? ") #ask user for the task
-    exists = False
-    for task in todo_list.keys(): #iterate through the tasks
-        if new_task.lower() == task.lower():  #test if the task is already in the list
+    exists = False #flag for checking if task is already in list
+    for task in todo_list.keys(): #iterate through the tasks and check that task is already in the list
+        if new_task.lower() == task.lower():
             print("That task is already in the list") #let user know that the task is already in the list
-            exists = True
+            exists = True #set flag for existing task
             break
     if not exists:
         todo_list[new_task] = False #add the new task to the todo list with a value of false to indicate the default of being incomplete
@@ -15,15 +15,15 @@ def add_task(todo_list): #function to add a task to a todo list
 
 def view_tasks(todo_list): #function to view all the tasks in the To Do List
     if not todo_list: #ensure that the To Do list is not empty
-        print("There are no tasks in your To Do list currently.") #inform the user that the task list is empty
+        print("There are no tasks in your To Do list currently.")
     else: #there is something in the task list
         print("The current tasks on your To Do List (Red is incomplete, Green is complete):") #print header to the user explaining the colors of the text
-        i = 1 #counter for printing out the list of tasks
-        for task in todo_list.keys(): #iterate through the tasks
+        i = 1 
+        for task in todo_list.keys():
             if todo_list[task]: #check if the flag for completion is true
-                print(f"\033[32m{i}: " + task + ": complete\033[0m") #print the task as completed and in greeen then returns the console color to default
-            else: #completion flag not set
-                print(f"\033[31m{i}: " + task + ": incomplete\033[0m") #print the task as incomplete and in red then returns the console color to default
+                print(f"\033[32m{i}: " + task + ": complete\033[0m")
+            else:
+                print(f"\033[31m{i}: " + task + ": incomplete\033[0m")
             i += 1
 
 def mark_complete(todo_list): #funtion to mark a task in the To Do List complete
@@ -41,21 +41,21 @@ def mark_complete(todo_list): #funtion to mark a task in the To Do List complete
         except ValueError as ve: #except block for ValueErrors from user input
             if "invalid literal" in str(ve): #check that it's a ValueError from improper input type 
                 print("Please enter the number for the listed task only.") #inform the user of the error
-            else: #other value errors
+            else:
                 print(ve) #print message passed by the raise call
 
 def delete_task(todo_list): #function to delete a task from the To Do List
     view_tasks(todo_list) #print the task list for the user to choose from
     while True: #loop in case of error inputs
-        try: #try block for user input
-            task_selection = int(input("Please choose the number of the task you wish to delete from your To Do List: ")) #get user's selection and convert to int
+        try: 
+            task_selection = int(input("Please choose the number of the task you wish to delete from your To Do List: "))
             if task_selection < 0 or task_selection > len(todo_list): #check that user selection is actually on the list
                 raise ValueError("That selection is not in the list, please try again") #raise exception if the user selection is not within the bounds of the list
-            else: #user selection does not raise errors
-                todo_values = list(todo_list.keys()) #get a list of the keys in the list
+            else:
+                todo_values = list(todo_list.keys())
                 del todo_list[todo_values[task_selection - 1]] #delete the selected task from the list
-                print(f"Task '{todo_values[task_selection - 1]}' has been deleted from your To Do List") #notify the user of the deletion
-                break #end the loop
+                print(f"Task '{todo_values[task_selection - 1]}' has been deleted from your To Do List")
+                break
         except ValueError as ve: #except block for ValueErrors from user input
             if "invalid literal" in str(ve): #check that it's a ValueError from improper input type
                 print("Please enter the number for the listed task only.") #inform the user of the error
@@ -63,6 +63,7 @@ def delete_task(todo_list): #function to delete a task from the To Do List
                 print(ve) #print message passed by the raise call
 
 todo_list = {} #initialize an empty todo list
+
 print("Welcome to the To-Do List App!\n\n") #a welcome to the program for users
 
 while True: #main program loop
@@ -77,13 +78,13 @@ while True: #main program loop
         else: #other ValueError encountered
             print(ve) #print the message from the raised error
     else: #else loop to run if no ValueError encountered
-        if user_selection == 1: #user selects to add a task
+        if user_selection == 1: #decision tree for user selection
             add_task(todo_list)
-        elif user_selection == 2: #user selects to view tasks
+        elif user_selection == 2:
             view_tasks(todo_list)
-        elif user_selection == 3: #user selects to mark a task complete
+        elif user_selection == 3:
             mark_complete(todo_list)
-        elif user_selection == 4: #user select to delet a task
+        elif user_selection == 4:
             delete_task(todo_list)
-        elif user_selection == 5: #user selects to quit
+        elif user_selection == 5:
             break
