@@ -25,8 +25,7 @@ Error Handling:
     Invalid inputs trigger appropriate error messages without crashing the program
 """
 
-def add_task(todo_list):
-    """
+"""
     Function to add a task to a todo list.
     
     Prompts the user for a task name and adds it to the list if it doesn't already exist.
@@ -35,7 +34,8 @@ def add_task(todo_list):
     
     Args:
         todo_list: List of task tuples (task_name, completion_status)
-    """
+"""
+def add_task(todo_list):
     new_task = input("What is the task you'd like to add to the Todo List? ")
     exists = False
     for task in todo_list:
@@ -48,8 +48,8 @@ def add_task(todo_list):
         print(f"New task: '{new_task}' added to the To Do List")
         
 
-def view_tasks(todo_list):
-    """
+
+"""
     Function to view all the tasks in the To Do List.
     
     Displays all tasks with color-coded completion status:
@@ -60,7 +60,8 @@ def view_tasks(todo_list):
     
     Args:
         todo_list: List of task tuples (task_name, completion_status)
-    """
+"""
+def view_tasks(todo_list):    
     if len(todo_list) == 0:
         print("There are no tasks in your To Do list currently.")
     else:
@@ -73,8 +74,7 @@ def view_tasks(todo_list):
                 print(f"\033[31m{i}: " + task + ": incomplete\033[0m")
             i += 1
 
-def mark_complete(todo_list):
-    """
+"""
     Function to mark a task in the To Do List complete.
     
     Displays the current task list and prompts user to select a task by number.
@@ -86,7 +86,8 @@ def mark_complete(todo_list):
     
     Args:
         todo_list: List of task tuples (task_name, completion_status)
-    """
+"""
+def mark_complete(todo_list):
     if len(todo_list) == 0:
         print("There are no tasks in your To Do list to mark as complete.")
         return
@@ -109,8 +110,7 @@ def mark_complete(todo_list):
         finally:
             pass
 
-def delete_task(todo_list):
-    """
+"""
     Function to delete a task from the To Do List.
     
     Displays the current task list and prompts user to select a task by number to delete.
@@ -122,7 +122,8 @@ def delete_task(todo_list):
     
     Args:
         todo_list: List of task tuples (task_name, completion_status)
-    """
+"""
+def delete_task(todo_list):
     if len(todo_list) == 0:
         print("There are no tasks in your To Do list to delete.")
         return
